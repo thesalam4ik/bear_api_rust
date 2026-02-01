@@ -11,12 +11,13 @@
 Библиотека асинхронная, поэтому нужен `tokio`.
 
 ```rust
-use bear_api_rust::BearAPIBuilder;
+use bear_api_rust::{BearAPIBuilder, CaptchaType};
 
 #[tokio::main]
 async fn main() {
     let api = BearAPIBuilder::default()
         .api_key("ВАШ_API_KEY")
+        .captcha_type(CaptchaType::V1)
         .build()
         .unwrap();
 
@@ -30,7 +31,3 @@ async fn main() {
         .await;
 }
 ```
-
-## Важно
-Сейчас типы в `src/lib.rs` не помечены как `pub`, поэтому использовать библиотеку из другого crate нельзя.
-Если планируется внешнее использование, сделайте публичными `BearAPI`, `BearAPIBuilder` (и при необходимости `SolveError`, `CaptchaType`).
