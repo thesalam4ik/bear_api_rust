@@ -53,7 +53,7 @@ impl From<reqwest::Error> for SolveError {
 #[allow(dead_code)]
 #[derive(Debug, Builder)]
 #[builder(setter(into))]
-pub struct BearAPI {
+pub struct BareAPI {
     #[builder(default = r#"Url::parse("http://5.42.211.111/").unwrap()"#)]
     url: Url,
 
@@ -67,7 +67,7 @@ pub struct BearAPI {
 }
 
 #[allow(dead_code)]
-impl BearAPI {
+impl BareAPI {
     pub async fn solve<F>(self, base64: String, cb: F) -> JoinHandle<()>
     where
         F: FnOnce(Result<String, SolveError>) + Send + 'static,

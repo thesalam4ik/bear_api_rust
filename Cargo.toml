@@ -1,5 +1,5 @@
 [package]
-name = "bear_api_rust"
+name = "bare_api_rust"
 version = "0.1.0"
 edition = "2024"
 

@@ -1,9 +1,9 @@
-# bear_api_rust
+# bare_api_rust
 
-Небольшая async-библиотека для отправки base64-капчи на Bear API и получения ответа.
+Небольшая async-библиотека для отправки base64-капчи на Bare API и получения ответа.
 
 ## Что внутри
-- `BearAPI` с builder-подходом (через `derive_builder`).
+- `BareAPI` с builder-подходом (через `derive_builder`).
 - Отправка капчи на `in.php` и получение результата из `res.php`.
 - Поддержка выбора типа капчи через префикс ключа.
 
@@ -11,11 +11,11 @@
 Библиотека асинхронная, поэтому нужен `tokio`.
 
 ```rust
-use bear_api_rust::{BearAPIBuilder, CaptchaType};
+use bare_api_rust::{BareAPIBuilder, CaptchaType};
 
 #[tokio::main]
 async fn main() {
-    let api = BearAPIBuilder::default()
+    let api = BareAPIBuilder::default()
         .api_key("ВАШ_API_KEY")
         .captcha_type(CaptchaType::V1)
         .build()
