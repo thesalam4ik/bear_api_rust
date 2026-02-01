@@ -6,7 +6,7 @@ use tokio::task::JoinHandle;
 
 #[allow(dead_code)]
 #[derive(Debug, Clone, Copy)]
-enum CaptchaType {
+pub enum CaptchaType {
     V1,  // Общая модель для капч, где написан англ. текст
     V2,  // Капчи русским текстом (Например: двести сорок три)
     V3,  // Капчи с русскими буквами (Например: чхЩ, рРп)
@@ -37,7 +37,7 @@ impl CaptchaType {
 
 #[derive(Debug)]
 #[allow(dead_code)]
-enum SolveError {
+pub enum SolveError {
     Request(reqwest::Error),
     BadResponse(String),
     MissingCaptchaId,
@@ -53,7 +53,7 @@ impl From<reqwest::Error> for SolveError {
 #[allow(dead_code)]
 #[derive(Debug, Builder)]
 #[builder(setter(into))]
-struct BearAPI {
+pub struct BearAPI {
     #[builder(default = r#"Url::parse("http://5.42.211.111/").unwrap()"#)]
     url: Url,
 
@@ -68,7 +68,7 @@ struct BearAPI {
 
 #[allow(dead_code)]
 impl BearAPI {
-    async fn solve<F>(self, base64: String, cb: F) -> JoinHandle<()>
+    pub async fn solve<F>(self, base64: String, cb: F) -> JoinHandle<()>
     where
         F: FnOnce(Result<String, SolveError>) + Send + 'static,
     {
