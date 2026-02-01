@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::time::Duration;
 
 use derive_builder::Builder;
 use reqwest::{Client, Url};
@@ -60,7 +61,9 @@ pub struct BareAPI {
     #[builder(default = "CaptchaType::V1")]
     captcha_type: CaptchaType,
 
-    #[builder(default = "Client::new()")]
+    #[builder(
+        default = "Client::builder().timeout(Duration::from_secs(5)).build().expect(\"reqwest client\")"
+    )]
     client: Client,
 
     api_key: String,
